@@ -92,7 +92,7 @@ export default new Router({
             {
               name: 'charts',
               path: 'charts',
-              component: lazyLoading('statistics/charts/Charts'),
+              component: lazyLoading('coopercao/EstatisticaPasseador'),
               meta: {
                 wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Charts'
               }

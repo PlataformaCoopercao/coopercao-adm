@@ -6,9 +6,9 @@
           <div class="stats">
             <div class="stats-number">
               <i class="ion ion-md-arrow-up text-primary stats-icon"></i>
-              59
+              {{data[0]}}
             </div>
-            <div class="stats-title">{{'dashboard.elements' | translate}}</div>
+            <div class="stats-title">{{fields[0]}}</div>
           </div>
         </div>
       </vuestic-widget>
@@ -19,9 +19,9 @@
           <div class="stats">
             <div class="stats-number">
               <i class="ion ion-md-arrow-down text-danger stats-icon"></i>
-              12
+              {{data[1]}}
             </div>
-            <div class="stats-title">{{'dashboard.versions' | translate}}</div>
+            <div class="stats-title">{{fields[1]}}</div>
           </div>
         </div>
       </vuestic-widget>
@@ -29,16 +29,17 @@
     <div class="col-md-6 col-xl-3">
       <vuestic-widget class="info-widget brand-danger">
         <div class="info-widget-inner">
-          <div class="info-widget-inner has-chart">
+          <div class="info-widget-inner">
             <div class="stats">
               <div class="stats-number">
-                425
+                {{data[2]}}
               </div>
-              <div class="stats-title">Commits</div>
+              <div class="stats-title">{{fields[2]}}</div>
             </div>
+<!--
             <div class="chart-container">
-              <vuestic-progress-bar type="circle" :value="70" theme="White" backgroundTheme="Danger"/>
-            </div>
+              <vuestic-progress-bar type="circle" :value="2" theme="White" backgroundTheme="Danger" />
+            </div> -->
           </div>
         </div>
       </vuestic-widget>
@@ -49,9 +50,9 @@
           <div class="stats">
             <div class="stats-number">
               <i class="ion ion-md-people stats-icon icon-wide"></i>
-              5
+              {{data[3]}}
             </div>
-            <div class="stats-title">{{'dashboard.teamMembers' | translate}}</div>
+            <div class="stats-title">{{fields[3]}}</div>
           </div>
         </div>
       </vuestic-widget>
@@ -61,12 +62,15 @@
 
 <script>
 export default {
-  name: 'dashboard-info-widgets'
+  name: 'dashboard-info-widgets',
+  props: ['data', 'fields']
 }
+
 </script>
 
 <style lang="scss" scoped>
-  .stats-number, .stats-title {
+  .stats-number,
+  .stats-title {
     line-height: 1;
   }
 
