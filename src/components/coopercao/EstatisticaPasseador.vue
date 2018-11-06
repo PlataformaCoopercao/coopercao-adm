@@ -8,20 +8,21 @@
         </vuestic-widget>
       </div>
       <div class="col-md-6">
-        <vuestic-widget class="chart-widget" :headerText="'Avaliação dos passeadores'">
-          <vuestic-chart :data="lineChartData" type="line" />
+        <vuestic-widget class="chart-widget" :headerText="'Passeadores avaliados'">
+          <vuestic-chart :data="passeadoresPieChartData" type="pie" />
         </vuestic-widget>
-        <!-- <vuestic-widget class="chart-widget" :headerText="$t('charts.horizontalBarChart')">
-          <vuestic-chart :data="horizontalBarChartData" type="horizontal-bar" />
-        </vuestic-widget> -->
       </div>
     </div>
 
-    <!-- <div class="row">
+    <div class="row">
       <div class="col-md-12">
-
+        <vuestic-widget class="chart-widget widgetHeigth" :headerText="'Avaliação dos passeadores'">
+          <vuestic-chart class="chartHeight" :data="lineChartData" type="line"/>
+        </vuestic-widget>
       </div>
     </div>
+
+    <!--
 
     <div class="row">
       <div class="col-md-6">
@@ -51,7 +52,7 @@ import {
   getLineChartData
 } from '../../data/charts/LinePasseadoresChartData'
 import BubbleChartData from '../../data/charts/BubbleChartData'
-import PieChartData from '../../data/charts/PieChartData'
+import PasseadoresPieChartData from '../../data/charts/PasseadoresPieChartData'
 import DonutChartData from '../../data/charts/DonutChartData'
 import PasseadoresChartData from '../../data/charts/PasseadoresChartData'
 import HorizontalBarChartData from '../../data/charts/HorizontalBarChartData'
@@ -67,7 +68,7 @@ export default {
   data: () => ({
     bubbleChartData: BubbleChartData,
     lineChartData: getLineChartData(),
-    pieChartData: PieChartData,
+    passeadoresPieChartData: PasseadoresPieChartData,
     donutChartData: DonutChartData,
     passeadoresChartData: PasseadoresChartData,
     horizontalBarChartData: HorizontalBarChartData,
@@ -84,8 +85,16 @@ export default {
 <style lang="scss">
   .widget.chart-widget {
     .widget-body {
-      height: 550px;
+      height: 200px;
     }
+  }
+
+  .widgetHeight{
+    max-height: 600px;
+  }
+
+  .chartHeight {
+    max-height: 500px;
   }
 
 </style>

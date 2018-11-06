@@ -16,14 +16,14 @@ let palette = store.getters.palette
 //   return Array.from(Array(length), generateValue)
 // }
 
-const getSize = () => {
-  const minSize = 4
-  return minSize + Math.floor(Math.random() * 3)
-}
+// const getSize = () => {
+//   const minSize = 4
+//   return minSize + Math.floor(Math.random() * 3)
+// }
 
 export const getLineChartData = () => {
-  const size = getSize()
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+  const size = 12
+  const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
   const yLabels = ['Avaliação']
 
   return {
@@ -33,7 +33,7 @@ export const getLineChartData = () => {
         label: yLabels[0],
         backgroundColor: utils.hex2rgb(palette.primary, 0.6).css,
         borderColor: palette.transparent,
-        data: [8.0, 7.8, 8.1, 8.4],
+        data: [8, 7, 8, 8, 8.5, 7.5, 8, 8, 9, 8, 8, 9],
       }
     ],
   }
