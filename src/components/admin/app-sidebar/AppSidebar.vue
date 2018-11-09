@@ -18,7 +18,7 @@
         <sidebar-link
           :to="{ name: 'charts' }">
           <span slot="title">
-            <span>{{ $t('menu.charts') }}</span>
+            <span>Passeadores</span>
           </span>
         </sidebar-link>
         <sidebar-link
