@@ -22,6 +22,12 @@
           </span>
         </sidebar-link>
         <sidebar-link
+          :to="{ name: 'finances' }">
+          <span slot="title">
+            <span>Finanças</span>
+          </span>
+        </sidebar-link>
+        <sidebar-link
           :to="{ name: 'progress-bars' }">
           <span slot="title">
             <span>{{ $t('menu.progressBars') }}</span>
@@ -57,7 +63,7 @@
         :to="{ name: 'tables' }">
         <span slot="title">
           <span
-            class="sidebar-menu-item-icon vuestic-icon vuestic-icon-tables"></span>
+            class="sidebar-menu-item-icon entypo-cc-nc"></span>
           <span>{{ $t('menu.tables') }}</span>
         </span>
       </sidebar-link>
