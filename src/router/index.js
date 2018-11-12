@@ -101,6 +101,10 @@ export default new Router({
           path: 'finances',
           component: lazyLoading('coopercao/Financas')
         }, {
+          name: 'clients',
+          path: 'clients',
+          component: lazyLoading('coopercao/Clientes')
+        }, {
           name: 'progress-bars',
           path: 'progress-bars',
           component: lazyLoading('statistics/progress-bars/ProgressBars'),
