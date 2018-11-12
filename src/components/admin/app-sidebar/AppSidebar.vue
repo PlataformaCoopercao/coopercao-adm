@@ -13,7 +13,7 @@
         <span slot="title">
           <span
             class="sidebar-menu-item-icon vuestic-icon vuestic-icon-statistics"></span>
-          <span>{{ $t('menu.statistics') }}</span>
+          <span>Coopercão</span>
         </span>
         <sidebar-link
           :to="{ name: 'charts' }">
@@ -25,6 +25,12 @@
           :to="{ name: 'finances' }">
           <span slot="title">
             <span>Finanças</span>
+          </span>
+        </sidebar-link>
+        <sidebar-link
+          :to="{ name: 'clients' }">
+          <span slot="title">
+            <span>Clientes</span>
           </span>
         </sidebar-link>
         <sidebar-link
