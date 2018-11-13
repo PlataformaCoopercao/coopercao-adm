@@ -49,7 +49,7 @@
         <div class="info-widget-inner">
           <div class="stats">
             <div class="stats-number">
-              <i class="ion ion-md-people stats-icon icon-wide"></i>
+              <!-- <i class="ion ion-md-people stats-icon icon-wide"></i> -->
               {{data[3]}}
             </div>
             <div class="stats-title">{{fields[3]}}</div>

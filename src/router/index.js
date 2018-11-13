@@ -90,9 +90,16 @@ export default new Router({
         path: 'statistics',
         component: EmptyParentComponent,
         children: [{
-          name: 'charts',
-          path: 'charts',
+          name: 'statsPasseador',
+          path: 'statsPasseador',
           component: lazyLoading('coopercao/EstatisticaPasseador'),
+          meta: {
+            wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Charts'
+          }
+        }, {
+          name: 'statsCliente',
+          path: 'statsCliente',
+          component: lazyLoading('coopercao/EstatisticaCliente'),
           meta: {
             wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Charts'
           }
