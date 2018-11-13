@@ -16,9 +16,15 @@
           <span>Coopercão</span>
         </span>
         <sidebar-link
-          :to="{ name: 'charts' }">
+          :to="{ name: 'statsPasseador' }">
           <span slot="title">
-            <span>Passeadores</span>
+            <span>Estatística Passeadores</span>
+          </span>
+        </sidebar-link>
+        <sidebar-link
+          :to="{ name: 'statsCliente' }">
+          <span slot="title">
+            <span>Estatística Cliente</span>
           </span>
         </sidebar-link>
         <sidebar-link
