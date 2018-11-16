@@ -1,6 +1,7 @@
 <template>
   <div class="charts-page">
     <div class="row">
+    <dashboard-info-widgets></dashboard-info-widgets>
       <div class="col-md-6">
         <vuestic-widget
           class="chart-widget"

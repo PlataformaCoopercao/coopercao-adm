@@ -13,12 +13,30 @@
         <span slot="title">
           <span
             class="sidebar-menu-item-icon vuestic-icon vuestic-icon-statistics"></span>
-          <span>{{ $t('menu.statistics') }}</span>
+          <span>Coopercão</span>
         </span>
         <sidebar-link
-          :to="{ name: 'charts' }">
+          :to="{ name: 'statsPasseador' }">
           <span slot="title">
-            <span>{{ $t('menu.charts') }}</span>
+            <span>Estatística Passeadores</span>
+          </span>
+        </sidebar-link>
+        <sidebar-link
+          :to="{ name: 'statsCliente' }">
+          <span slot="title">
+            <span>Estatística Cliente</span>
+          </span>
+        </sidebar-link>
+        <sidebar-link
+          :to="{ name: 'finances' }">
+          <span slot="title">
+            <span>Finanças</span>
+          </span>
+        </sidebar-link>
+        <sidebar-link
+          :to="{ name: 'clients' }">
+          <span slot="title">
+            <span>Clientes</span>
           </span>
         </sidebar-link>
         <sidebar-link
@@ -57,7 +75,7 @@
         :to="{ name: 'tables' }">
         <span slot="title">
           <span
-            class="sidebar-menu-item-icon vuestic-icon vuestic-icon-tables"></span>
+            class="sidebar-menu-item-icon entypo-cc-nc"></span>
           <span>{{ $t('menu.tables') }}</span>
         </span>
       </sidebar-link>
