@@ -22,6 +22,12 @@
           </span>
         </sidebar-link>
         <sidebar-link
+          :to="{ name: 'statsPasseio' }">
+          <span slot="title">
+            <span>Estatística Passeio</span>
+          </span>
+        </sidebar-link>
+        <sidebar-link
           :to="{ name: 'statsCliente' }">
           <span slot="title">
             <span>Estatística Cliente</span>
