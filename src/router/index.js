@@ -104,6 +104,13 @@ export default new Router({
             wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Charts'
           }
         }, {
+          name: 'statsPasseio',
+          path: 'statsPasseio',
+          component: lazyLoading('coopercao/EstatisticaPasseio'),
+          meta: {
+            wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Charts'
+          }
+        }, {
           name: 'finances',
           path: 'finances',
           component: lazyLoading('coopercao/Financas')
