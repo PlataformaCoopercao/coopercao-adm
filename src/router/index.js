@@ -119,6 +119,14 @@ export default new Router({
           path: 'clients',
           component: lazyLoading('coopercao/Clientes')
         }, {
+          name: 'passeadores',
+          path: 'passeadores',
+          component: lazyLoading('coopercao/Passeadores')
+        }, {
+          name: 'formPasseador',
+          path: 'formPasseador',
+          component: lazyLoading('coopercao/formPasseador')
+        }, {
           name: 'progress-bars',
           path: 'progress-bars',
           component: lazyLoading('statistics/progress-bars/ProgressBars'),
