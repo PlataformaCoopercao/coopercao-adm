@@ -52,6 +52,12 @@
           </span>
         </sidebar-link>
         <sidebar-link
+          :to="{ name: 'passeios' }">
+          <span slot="title">
+            <span>Passeios</span>
+          </span>
+        </sidebar-link>
+        <sidebar-link
           :to="{ name: 'progress-bars' }">
           <span slot="title">
             <span>{{ $t('menu.progressBars') }}</span>
