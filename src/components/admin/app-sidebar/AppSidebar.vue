@@ -2,18 +2,18 @@
   <vuestic-sidebar :hidden="isOpen">
     <template slot="menu">
       <sidebar-link
-        :to="{ name: 'dashboard' }">
+        :to="{}">
         <span slot="title">
           <span
             class="sidebar-menu-item-icon vuestic-icon vuestic-icon-dashboard"></span>
-          <span>{{ $t('menu.dashboard') }}</span>
+          <span>{{'Administração'}}</span>
         </span>
       </sidebar-link>
       <sidebar-link-group>
         <span slot="title">
           <span
             class="sidebar-menu-item-icon vuestic-icon vuestic-icon-statistics"></span>
-          <span>Coopercão</span>
+          <span>Estatística</span>
         </span>
         <sidebar-link
           :to="{ name: 'statsPasseador' }">
@@ -33,247 +33,40 @@
             <span>Estatística Cliente</span>
           </span>
         </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'finances' }">
-          <span slot="title">
-            <span>Finanças</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
+      </sidebar-link-group>
+
+      <sidebar-link
           :to="{ name: 'clients' }">
           <span slot="title">
+            <span class="sidebar-menu-item-icon vuestic-icon vuestic-icon-user"></span>
             <span>Clientes</span>
           </span>
         </sidebar-link>
-        <sidebar-link
+
+      <sidebar-link
           :to="{ name: 'passeadores' }">
           <span slot="title">
-            <span>Passeadores</span>
+            <span class="sidebar-menu-item-icon fa fa-users"></span>
+            <span>Funcionários</span>
           </span>
         </sidebar-link>
-        <sidebar-link
+
+      <sidebar-link
           :to="{ name: 'passeios' }">
           <span slot="title">
+            <span class="sidebar-menu-item-icon fa fa-paw"></span>
             <span>Passeios</span>
           </span>
         </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'progress-bars' }">
-          <span slot="title">
-            <span>{{ $t('menu.progressBars') }}</span>
-          </span>
-        </sidebar-link>
-      </sidebar-link-group>
-      <sidebar-link-group>
-        <span slot="title">
-          <span
-            class="sidebar-menu-item-icon vuestic-icon vuestic-icon-forms"></span>
-          <span>{{ $t('menu.forms') }}</span>
-        </span>
-        <sidebar-link
-          :to="{ name: 'form-elements' }">
-          <span slot="title">
-            <span>{{ $t('menu.formElements') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'form-wizards' }">
-          <span slot="title">
-            <span>{{ $t('menu.formWizards') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'medium-editor' }">
-          <span slot="title">
-            <span>{{ $t('menu.mediumEditor') }}</span>
-          </span>
-        </sidebar-link>
-      </sidebar-link-group>
+
       <sidebar-link
-        :to="{ name: 'tables' }">
-        <span slot="title">
-          <span
-            class="sidebar-menu-item-icon entypo-cc-nc"></span>
-          <span>{{ $t('menu.tables') }}</span>
-        </span>
-      </sidebar-link>
-      <sidebar-link-group>
-        <span slot="title">
-          <span
-            class="sidebar-menu-item-icon vuestic-icon vuestic-icon-ui-elements"></span>
-          <span>{{ $t('menu.uiElements') }}</span>
-        </span>
-        <sidebar-link
-          :to="{ name: 'typography' }">
+          :to="{ name: 'finances' }">
           <span slot="title">
-            <span>{{ $t('menu.typography') }}</span>
+            <span class="sidebar-menu-item-icon fa fa-money"></span>
+            <span>Finanças</span>
           </span>
         </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'buttons' }">
-          <span slot="title">
-            <span>{{ $t('menu.buttons') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'collapse' }">
-          <span slot="title">
-            <span>{{ $t('menu.collapse') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'color-pickers' }">
-          <span slot="title">
-            <span>{{ $t('menu.colorPickers') }}</span>
-          </span>
-        </sidebar-link>
-        <!--<sidebar-link-->
-          <!--:to="{ name: 'dropdowns' }">-->
-          <!--<span slot="title">-->
-            <!--<span>{{ $t('menu.dropdowns') }}</span>-->
-          <!--</span>-->
-        <!--</sidebar-link>-->
-        <sidebar-link
-          :to="{ name: 'timelines' }">
-          <span slot="title">
-            <span>{{ $t('menu.timelines') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'notifications' }">
-          <span slot="title">
-            <span>{{ $t('menu.notifications') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'icon-sets' }">
-          <span slot="title">
-            <span>{{ $t('menu.icons') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'spinners' }">
-          <span slot="title">
-            <span>{{ $t('menu.spinners') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'grid' }">
-          <span slot="title">
-            <span>{{ $t('menu.grid') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'modals' }">
-          <span slot="title">
-            <span>{{ $t('menu.modals') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'file-upload' }">
-          <span slot="title">
-            <span>{{ $t('menu.fileUpload') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'tags' }">
-          <span slot="title">
-            <span>{{ $t('menu.tags') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'tree-view' }">
-          <span slot="title">
-            <span>{{ $t('menu.treeView') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'cards' }">
-          <span slot="title">
-            <span>{{ $t('menu.cards') }}</span>
-          </span>
-        </sidebar-link>
-      </sidebar-link-group>
-      <sidebar-link
-        :to="{ name: 'extra' }">
-        <span slot="title">
-          <span
-            class="sidebar-menu-item-icon vuestic-icon vuestic-icon-extras"></span>
-          <span>{{ $t('menu.extra') }}</span>
-        </span>
-      </sidebar-link>
-      <sidebar-link-group>
-        <span slot="title">
-          <span
-            class="sidebar-menu-item-icon vuestic-icon vuestic-icon-auth"></span>
-          <span>{{ $t('menu.auth') }}</span>
-        </span>
-        <sidebar-link
-          :to="{ name: 'login' }"
-          target="_blank"
-          :isChildLink="true">
-          <span slot="title">
-            <span>{{ $t('menu.login') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'signup' }"
-          target="_blank">
-          <span slot="title">
-            <span>{{ $t('menu.signUp') }}</span>
-          </span>
-        </sidebar-link>
-      </sidebar-link-group>
-      <sidebar-link-group>
-        <span slot="title">
-          <span
-            class="sidebar-menu-item-icon vuestic-icon vuestic-icon-maps"></span>
-          <span>{{ $t('menu.maps') }}</span>
-        </span>
-        <sidebar-link
-          :to="{ name: 'google-maps' }">
-          <span slot="title">
-            <span>{{ 'Google Maps' }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'yandex-maps' }">
-          <span slot="title">
-            <span>{{ 'Yandex Maps' }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'leaflet-maps' }">
-          <span slot="title">
-            <span>{{ 'Leaflet Maps' }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'bubble-maps' }">
-          <span slot="title">
-            <span>{{ $t('Bubble Maps') }}</span>
-          </span>
-        </sidebar-link>
-        <sidebar-link
-          :to="{ name: 'line-maps' }">
-          <span slot="title">
-            <span>{{ $t('Line Maps') }}</span>
-          </span>
-        </sidebar-link>
-      </sidebar-link-group>
-      <sidebar-link-group>
-        <span slot="title">
-          <span
-            class="sidebar-menu-item-icon vuestic-icon vuestic-icon-files"></span>
-          <span>{{ $t('menu.pages') }}</span>
-        </span>
-        <sidebar-link
-          :to="{ name: '404-pages' }">
-          <span slot="title">
-            <span>{{ $t('404 Pages') }}</span>
-          </span>
-        </sidebar-link>
-      </sidebar-link-group>
+
     </template>
   </vuestic-sidebar>
 </template>
