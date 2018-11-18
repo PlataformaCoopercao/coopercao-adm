@@ -3,7 +3,7 @@
     <app-navbar :isOpen="opened" @toggle-menu="toggleSidebar"/>
     <app-sidebar :isOpen="opened" @toggle-menu="toggleSidebar"/>
     <main slot="content" id="content" class="content" role="main">
-      <app-breadcrumbs/>
+      <!-- <app-breadcrumbs/> -->
       <vuestic-pre-loader v-show="isLoading" class="pre-loader"></vuestic-pre-loader>
       <router-view></router-view>
     </main>
