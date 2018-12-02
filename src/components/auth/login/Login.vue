@@ -11,7 +11,7 @@
       <div class="form-group">
         <div class="input-group">
           <input type="password" id="password" required="required"/>
-          <label class="control-label" for="password">{{'auth.password' | translate}}</label><i class="bar"></i>
+          <label class="control-label" for="password">senha</label><i class="bar"></i>
         </div>
       </div>
       <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between down-container">

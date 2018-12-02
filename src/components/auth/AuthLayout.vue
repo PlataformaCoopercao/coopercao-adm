@@ -12,7 +12,7 @@
       <div class="auth-wallpaper col-6 d-none d-lg-flex">
         <div class="oblique"></div>
         <router-link class="auth-wallpaper__logo"  :to="{path: '/'}">
-          <vuestic-icon-vuestic/>
+          <img  class ="img-fluid mx-auto d-block" src="../../assets/cooperlogo.png" width="50%">
         </router-link>
       </div>
     </div>
@@ -60,7 +60,6 @@ export default {
         align-items: center;
         justify-content: center;
         &__logo {
-          height: $auth-wallpaper-ivuestic-h;
           z-index: 2;
           width: 100%;
         }
@@ -89,4 +88,5 @@ export default {
       }
     }
   }
+
 </style>

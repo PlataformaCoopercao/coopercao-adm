@@ -65,7 +65,7 @@
               </tr>
               <tr class="table-success">
                 <td>
-                  <span class="badge badge-pill badge-primary">Novo</span>
+                  <span class="badge badge-pill badge-secondary">Novo</span>
                 </td>
                 <td>Lendley Wintz</td>
                 <td>98874-8943</td>
@@ -78,7 +78,7 @@
               </tr>
               <tr class="table-success">
                 <td>
-                  <span class="badge badge-pill badge-primary">Novo</span>
+                  <span class="badge badge-pill badge-secondary">Novo</span>
                 </td>
                 <td>Barbara Noz</td>
                 <td>98874-2371</td>
@@ -231,5 +231,9 @@ export default {
     td:first-child {
       width: 1rem;
     }
+  }
+
+  .success-icon{
+    color: #00D169;
   }
 </style>

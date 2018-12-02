@@ -115,9 +115,9 @@
 
               </tbody>
             </table>
-            <sidebar-link :to="{name:'formPasseador'}">
-              {{'Novo' | translate}}
-            </sidebar-link>
+            <router-link :to="{name:'formPasseador'}">
+              <button class="btn btn-primary">{{'Novo' | translate}}</button>
+            </router-link>
 
           </div>
         </vuestic-widget>
