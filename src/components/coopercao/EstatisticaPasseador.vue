@@ -1,15 +1,15 @@
 <template>
   <div class="charts-page">
-    <dashboard-info-widgets :data="[50,8.2,0,24]" :fields="['Passeadores','Nota média','Reclamações','Elogios']"></dashboard-info-widgets>
+    <dashboard-info-widgets :data="infoData" :fields="['Passeadores','Nota média','Reclamações','Elogios']"></dashboard-info-widgets>
     <div class="row">
       <div class="col-md-6">
         <vuestic-widget class="chart-widget" :headerText="'Áreas de atendimento'">
-          <vuestic-chart :data="passeadoresChartData" type="vertical-bar" />
+          <vuestic-chart :data="areaData" type="vertical-bar" />
         </vuestic-widget>
       </div>
       <div class="col-md-6">
         <vuestic-widget class="chart-widget" :headerText="'Passeadores avaliados'">
-          <vuestic-chart :data="passeadoresPieChartData" type="pie" />
+          <vuestic-chart :data="evaluationData" type="pie" />
         </vuestic-widget>
       </div>
     </div>
@@ -17,33 +17,10 @@
     <div class="row">
       <div class="col-md-12">
         <vuestic-widget class="chart-widget widgetHeigth" :headerText="'Avaliação dos passeadores'">
-          <vuestic-chart class="chartHeight" :data="lineChartData" type="line"/>
+          <vuestic-chart class="chartHeight" :data="lineChartData" type="line" />
         </vuestic-widget>
       </div>
     </div>
-
-    <!--
-
-    <div class="row">
-      <div class="col-md-6">
-        <vuestic-widget class="chart-widget" :headerText="$t('charts.pieChart')">
-          <vuestic-chart :data="pieChartData" type="pie" />
-        </vuestic-widget>
-      </div>
-      <div class="col-md-6">
-        <vuestic-widget class="chart-widget" :headerText="$t('charts.donutChart')">
-          <vuestic-chart :data="donutChartData" type="donut" />
-        </vuestic-widget>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <vuestic-widget class="chart-widget" :headerText="$t('charts.bubbleChart')">
-          <vuestic-chart :data="bubbleChartData" type="bubble" />
-        </vuestic-widget>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -51,13 +28,12 @@
 import {
   getLineChartData
 } from '../../data/charts/LinePasseadoresChartData'
-import BubbleChartData from '../../data/charts/BubbleChartData'
-import PasseadoresPieChartData from '../../data/charts/PasseadoresPieChartData'
-import DonutChartData from '../../data/charts/DonutChartData'
-import PasseadoresChartData from '../../data/charts/PasseadoresChartData'
-import HorizontalBarChartData from '../../data/charts/HorizontalBarChartData'
+import axios from 'axios'
 import SidebarLink from '../admin/app-sidebar/components/SidebarLink'
 import DashboardInfoWidgets from '../dashboard/DashboardInfoWidgets'
+import store from 'vuex-store'
+
+let palette = store.getters.palette
 
 export default {
   name: 'charts',
@@ -65,15 +41,97 @@ export default {
     SidebarLink,
     DashboardInfoWidgets
   },
+  created () {
+    this.getWalkerData()
+  },
+  mounted () {
+    // this.buildAreaGraph();
+    // this.buildEvaluationData();
+  },
   data: () => ({
-    bubbleChartData: BubbleChartData,
+    areaData: {},
+    evaluationData: {},
+    infoData: [],
+    walkersData: [],
     lineChartData: getLineChartData(),
-    passeadoresPieChartData: PasseadoresPieChartData,
-    donutChartData: DonutChartData,
-    passeadoresChartData: PasseadoresChartData,
-    horizontalBarChartData: HorizontalBarChartData,
+
   }),
   methods: {
+    buildAreaGraph () {
+      axios.get('https://us-central1-coopercao-backend.cloudfunctions.net/getAreas')
+        .then(response => {
+          console.log('building area graph')
+          let areaLabels = response.data
+          let walkersPerArea = new Array(areaLabels.length).fill(0)
+
+          for (let i = 0; i < areaLabels.length; i++) {
+            for (let j = 0; j < this.walkersData.length; j++) {
+              if (Object.keys(this.walkersData[j].areas).includes(areaLabels[i])) {
+                walkersPerArea[i] += 1
+              }
+            }
+          }
+
+          this.areaData = {
+            labels: areaLabels,
+            datasets: [{
+              label: 'Numero de passeadores',
+              backgroundColor: palette.primary,
+              borderColor: palette.transparent,
+              data: walkersPerArea
+            }]
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    buildEvaluationData () {
+      let evaluatedWalkers = 0
+      let notEveluatedWalkers = 0
+
+      console.log('Build score graph')
+
+      for (let i = 0; i < this.walkersData.length; i++) {
+        console.log('entrou no for')
+        if (this.walkersData[i].total_walks > 0 && this.walkersData[i].score > 0) { evaluatedWalkers++ } else { notEveluatedWalkers++ }
+      }
+
+      this.evaluationData = {
+        labels: ['Avaliado', 'Não avaliado'],
+        datasets: [{
+          label: 'Passeadores',
+          backgroundColor: [palette.primary, palette.danger],
+          data: [evaluatedWalkers, notEveluatedWalkers]
+        }]
+
+      }
+    },
+    getAverageScore (walkersData) {
+      let totalScore = 0
+
+      for (let i = 0; i < walkersData.length; i++) {
+        totalScore += walkersData[i].score
+      }
+
+      return totalScore / walkersData.length
+    },
+    getWalkerData () {
+      axios.get('https://us-central1-coopercao-backend.cloudfunctions.net/getAllWalkers')
+        .then(response => {
+          this.walkersData = response.data
+          this.infoData.push(this.walkersData.length)
+          this.infoData.push(this.getAverageScore(this.walkersData))
+          this.infoData.push(0)
+          this.infoData.push(10)
+          console.log('data was set')
+          this.buildAreaGraph()
+          this.buildEvaluationData()
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
     refreshData () {
       this.lineChartData = getLineChartData()
     },
@@ -89,7 +147,7 @@ export default {
     }
   }
 
-  .widgetHeight{
+  .widgetHeight {
     max-height: 600px;
   }
 

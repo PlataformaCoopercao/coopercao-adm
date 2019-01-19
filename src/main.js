@@ -11,6 +11,7 @@ import store from './store'
 import router from './router'
 import VuesticPlugin from '@/vuestic-theme/vuestic-plugin'
 import './i18n'
+import axios from 'axios'
 import YmapPlugin from 'vue-yandex-maps'
 
 Vue.use(VuesticPlugin)
@@ -34,5 +35,6 @@ new Vue({
   el: '#app',
   router,
   store,
+  axios,
   render: h => h(App)
 })

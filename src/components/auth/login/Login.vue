@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <h2>{{'auth.welcome' | translate}}</h2>
+    <h2>Bem vindo</h2>
     <form method="post" action="/auth/login" name="login">
       <div class="form-group">
         <div class="input-group">
@@ -18,7 +18,7 @@
         <button class="btn btn-primary" type="submit">
           {{'auth.login' | translate}}
         </button>
-        <router-link class='link' :to="{name: 'signup'}">{{'auth.createAccount' | translate}}</router-link>
+        <!-- <router-link class='link' :to="{name: 'signup'}">{{'auth.createAccount' | translate}}</router-link> -->
       </div>
     </form>
   </div>
