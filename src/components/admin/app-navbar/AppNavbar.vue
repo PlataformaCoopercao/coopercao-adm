@@ -1,11 +1,11 @@
 <template>
   <vuestic-navbar>
     <header-selector slot="selector" :isOpen.sync="valueProxy"/>
-    <span slot="logo">
+    <!-- <span slot="logo">
       <vuestic-icon-vuestic></vuestic-icon-vuestic>
-    </span>
+    </span> -->
 
-    <notification-dropdown class="col nav-item"/>
+    <!-- <notification-dropdown class="col nav-item"/> -->
     <profile-dropdown class="col nav-item">
       <img src="https://i.imgur.com/nfa5itq.png"/>
     </profile-dropdown>

@@ -1,9 +1,9 @@
 <template>
   <div class="charts-page">
-    <dashboard-info-widgets :data="infoData" :fields="['Passeadores','Nota média','Reclamações','Elogios']"></dashboard-info-widgets>
+    <dashboard-info-widgets :data="infoData" :fields="['Passeadores','Nota média','Abaixo da Média','Acima da Média']"></dashboard-info-widgets>
     <div class="row">
       <div class="col-md-6">
-        <vuestic-widget class="chart-widget" :headerText="'Áreas de atendimento'">
+        <vuestic-widget class="chart-widget" :headerText="'Passeadores por área'">
           <vuestic-chart :data="areaData" type="vertical-bar" />
         </vuestic-widget>
       </div>
@@ -14,13 +14,13 @@
       </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-12">
         <vuestic-widget class="chart-widget widgetHeigth" :headerText="'Avaliação dos passeadores'">
           <vuestic-chart class="chartHeight" :data="lineChartData" type="line" />
         </vuestic-widget>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -42,11 +42,9 @@ export default {
     DashboardInfoWidgets
   },
   created () {
-    this.getWalkerData()
+    this.loadData()
   },
   mounted () {
-    // this.buildAreaGraph();
-    // this.buildEvaluationData();
   },
   data: () => ({
     areaData: {},
@@ -60,7 +58,6 @@ export default {
     buildAreaGraph () {
       axios.get('https://us-central1-coopercao-backend.cloudfunctions.net/getAreas')
         .then(response => {
-          console.log('building area graph')
           let areaLabels = response.data
           let walkersPerArea = new Array(areaLabels.length).fill(0)
 
@@ -90,10 +87,7 @@ export default {
       let evaluatedWalkers = 0
       let notEveluatedWalkers = 0
 
-      console.log('Build score graph')
-
       for (let i = 0; i < this.walkersData.length; i++) {
-        console.log('entrou no for')
         if (this.walkersData[i].total_walks > 0 && this.walkersData[i].score > 0) { evaluatedWalkers++ } else { notEveluatedWalkers++ }
       }
 
@@ -109,22 +103,39 @@ export default {
     },
     getAverageScore (walkersData) {
       let totalScore = 0
+      let evWalkers = 0
 
       for (let i = 0; i < walkersData.length; i++) {
-        totalScore += walkersData[i].score
+        if (walkersData[i].total_walks > 0) {
+          evWalkers++
+          totalScore += walkersData[i].score
+        }
       }
 
-      return totalScore / walkersData.length
+      return totalScore / evWalkers
     },
-    getWalkerData () {
+    underAverageWalkers (walkersData) {
+      let undrAvgWalkers = 0
+      for (let i = 0; i < walkersData.length; i++) {
+        if (walkersData[i].total_walks > 0 && walkersData[i].score < 7) { undrAvgWalkers++ }
+      }
+      return undrAvgWalkers
+    },
+    aboveAverageWalkers (walkersData) {
+      let abvAvgWalkers = 0
+      for (let i = 0; i < walkersData.length; i++) {
+        if (walkersData[i].total_walks > 0 && walkersData[i].score >= 7) { abvAvgWalkers++ }
+      }
+      return abvAvgWalkers
+    },
+    loadData () {
       axios.get('https://us-central1-coopercao-backend.cloudfunctions.net/getAllWalkers')
         .then(response => {
           this.walkersData = response.data
           this.infoData.push(this.walkersData.length)
           this.infoData.push(this.getAverageScore(this.walkersData))
-          this.infoData.push(0)
-          this.infoData.push(10)
-          console.log('data was set')
+          this.infoData.push(this.underAverageWalkers(this.walkersData))
+          this.infoData.push(this.aboveAverageWalkers(this.walkersData))
           this.buildAreaGraph()
           this.buildEvaluationData()
         })

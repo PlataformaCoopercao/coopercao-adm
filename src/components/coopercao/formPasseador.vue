@@ -127,6 +127,15 @@ export default {
   components: {
     SpringSpinner
   },
+  created () {
+    axios.get('https://us-central1-coopercao-backend.cloudfunctions.net/getAreas')
+      .then(response => {
+        this.areas = response.data
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  },
   data () {
     return {
       walker: {
@@ -144,28 +153,40 @@ export default {
         profession: '',
         cpf: '',
         photoUrl: 'https://randomuser.me/api/portraits/thumb/men/65.jpg'
-      }
+      },
+      areas: []
     }
   },
   methods: {
     submit: function () {
-      axios.post('https://us-central1-coopercao-backend.cloudfunctions.net/registerWalker',
-        {
-          name: this.walker.name,
-          email: this.walker.email,
-          pass: 'coopercao',
-          phoneNumber: this.walker.phoneNumber,
-          cpf: this.walker.cpf,
-          address: this.walker.address,
-          areas: ['Boa Viagem'],
-          profession: this.walker.profession,
-          civilState: this.walker.civilState,
-          photoUrl: this.walker.photoUrl
-        })
+      axios.post('https://us-central1-coopercao-backend.cloudfunctions.net/registerWalker', {
+        name: this.walker.name,
+        email: this.walker.email,
+        pass: 'coopercao',
+        phoneNumber: '+55' + this.walker.phoneNumber,
+        cpf: this.walker.cpf,
+        address: this.walker.address,
+        areas: this.areas,
+        profession: this.walker.profession,
+        civilState: 'solteiro',
+        photoUrl: this.walker.photoUrl
+      })
         .then(response => {
-          console.log(response)
+          this.showToast('Passeador Cadastrado com Sucesso', {
+            icon: 'fa-check-circle-o',
+            position: 'bottom-right',
+            duration: 2500,
+            fullWidth: false
+          })
+          this.$router.push('/admin/statistics/passeadores')
         })
         .catch(error => {
+          this.showToast('Falha ao cadastrar passeador', {
+            icon: 'fa-exclamation-triangle',
+            position: 'bottom-right',
+            duration: 2500,
+            fullWidth: false
+          })
           console.log(error)
         })
     }

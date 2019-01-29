@@ -15,47 +15,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>20/01/2018</td>
-                  <td>16:00</td>
-                  <td>Lupim</td>
-                  <td>João</td>
-                  <td>Ana</td>
-                </tr>
-                <tr>
-                  <td>20/01/2018</td>
-                  <td>16:00</td>
-                  <td>Lupim</td>
-                  <td>João</td>
-                  <td>Ana</td>
-                </tr>
-                <tr>
-                  <td>20/01/2018</td>
-                  <td>16:00</td>
-                  <td>Lupim</td>
-                  <td>João</td>
-                  <td>Ana</td>
-                </tr>
-                <tr>
-                  <td>20/01/2018</td>
-                  <td>16:00</td>
-                  <td>Lupim</td>
-                  <td>João</td>
-                  <td>Ana</td>
-                </tr>
-                <tr>
-                  <td>20/01/2018</td>
-                  <td>16:00</td>
-                  <td>Lupim</td>
-                  <td>João</td>
-                  <td>Ana</td>
-                </tr>
-                <tr>
-                  <td>20/01/2018</td>
-                  <td>16:00</td>
-                  <td>Lupim</td>
-                  <td>João</td>
-                  <td>Ana</td>
+                <tr v-for="walk in walk_history" :key="walk.key">
+                  <td>{{walk.date}}</td>
+                  <td>{{walk.time}}</td>
+                  <td>{{walk.dog.name}}</td>
+                  <td>{{walk.dog.owner_data.name}}</td>
+                  <td>{{walk.walker.name}}</td>
                 </tr>
               </tbody>
             </table>
@@ -92,6 +57,7 @@
 
 <script>
 import Vue from 'vue'
+import axios from 'axios'
 import BadgeColumn from './BadgeColumn.vue'
 import SidebarLink from './SidebarLink'
 import FieldsDef from 'vuestic-components/vuestic-datatable/data/fields-definition'
@@ -109,8 +75,18 @@ export default {
     SpringSpinner,
     SidebarLink
   },
+  created () {
+    axios.get('https://us-central1-coopercao-backend.cloudfunctions.net/getWalkHistory')
+      .then(response => {
+        this.walk_history = response.data
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  },
   data () {
     return {
+      walk_history: [],
       apiUrl: 'https://vuetable.ratiw.net/api/users',
       apiMode: true,
       tableFields: FieldsDef.tableFields,

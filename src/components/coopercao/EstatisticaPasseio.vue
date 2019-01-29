@@ -14,13 +14,13 @@
       </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-12">
         <vuestic-widget class="chart-widget widgetHeigth" :headerText="'Passeios por mês'">
           <vuestic-chart class="chartHeight" :data="passeioLineChartData" type="line" />
         </vuestic-widget>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -103,7 +103,6 @@ export default {
         day.setDate(date[0])
         walksPerDay[day.getDay()]++
       }
-      console.log(walksPerDay)
       this.walkDays = {
         labels: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
         datasets: [{

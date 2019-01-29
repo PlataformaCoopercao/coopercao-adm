@@ -26,7 +26,7 @@ export default new Router({
     {
       path: '*',
       redirect: {
-        name: 'dashboard'
+        name: 'login'
       },
     },
     {
@@ -36,6 +36,9 @@ export default new Router({
         name: 'login',
         path: 'login',
         component: lazyLoading('auth/login/Login'),
+        meta: {
+          title: 'Coopercao Admin'
+        }
       },
       {
         name: 'signup',

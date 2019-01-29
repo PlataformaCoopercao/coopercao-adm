@@ -51,7 +51,6 @@ export default {
   created () {
     axios.get('https://us-central1-coopercao-backend.cloudfunctions.net/getAllClients ')
       .then(response => {
-        console.log(response.data)
         this.clients = response.data
       })
       .catch(error => {

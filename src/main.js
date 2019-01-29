@@ -11,12 +11,21 @@ import store from './store'
 import router from './router'
 import VuesticPlugin from '@/vuestic-theme/vuestic-plugin'
 import './i18n'
-import axios from 'axios'
 import YmapPlugin from 'vue-yandex-maps'
+import firebase from 'firebase'
+
+var config = {
+  apiKey: 'AIzaSyA5cMNy3cpbNf_pj-qq-wCGgR0Rds0Rt38',
+  authDomain: 'coopercao-backend.firebaseapp.com',
+  databaseURL: 'https://coopercao-backend.firebaseio.com',
+  projectId: 'coopercao-backend',
+  storageBucket: 'coopercao-backend.appspot.com',
+  messagingSenderId: '124584809933'
+}
+firebase.initializeApp(config)
 
 Vue.use(VuesticPlugin)
 Vue.use(YmapPlugin)
-
 // NOTE: workaround for VeeValidate + vuetable-2
 Vue.use(VeeValidate, { fieldsBagName: 'formFields' })
 
@@ -35,6 +44,5 @@ new Vue({
   el: '#app',
   router,
   store,
-  axios,
   render: h => h(App)
 })
